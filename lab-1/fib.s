@@ -12,7 +12,24 @@ fibonacci:
 	@ ADD/MODIFY CODE BELOW
 	@ PROLOG
 	push {r3, r4, r5, lr}
+	
+	subs r4, r0, #0
+	ble .L3 
+	
+	cmp r4, #1
+	beq .L4
 
+	add r0, r4, #0xffffffff
+	bl fibonacci
+		
+	mov r5, r0
+	sub r0, r4, #2
+	bl fibonacci
+	
+	adds r0, r5, r0
+	
+		
+	
 	@ R4 = R0 - 0 (update flags)
 	@ if(R0 <= 0) goto .L3 (which returns 0)
 
@@ -27,7 +44,7 @@ fibonacci:
 	@ Recursive call to fibonacci with R4 - 2 as parameter
 
 	@ R0 = R5 + R0 (update flags)
-
+	@mov r0, #5
 	pop {r3, r4, r5, pc}		@EPILOG
 
 	@ END CODE MODIFICATION
