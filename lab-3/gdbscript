@@ -1,0 +1,17 @@
+file fibseq
+target remote :1234
+list
+
+b 9
+c
+p number
+n
+s
+s
+p $r0
+return (long long int ) 100
+n
+n
+n
+n
+
